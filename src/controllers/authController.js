@@ -1,27 +1,40 @@
 const userRepository = require('../repositories/userRepository');
 
-exports.registerUser = async (req, res) => {
-    const { username, password } = req.body;
+exports.getAllUsers = async (req, res) => {
     try {
-        const user = await userRepository.createUser(username, password);
-        res.json(user);
+        const users = await userRepository.find();
+        res.status(200).json(users);
     } catch (error) {
-        console.error(error);
-        res.status(500).json({ error: 'Internal Server Error' });
+        res.status(400).json({message: error.message})
     }
 };
 
-exports.loginUser = async (req, res) => {
-    const { username, password } = req.body;
+exports.createUser = async (req, res) => {
     try {
-        const user = await userRepository.getUserByUsername(username);
-        if (!user || user.password !== password) {
-            res.status(401).json({ error: 'Invalid credentials' });
-        } else {
-            res.json({ message: 'Login successful', user });
-        }
+        const newUser = new User(req.body);
+        await newUser.save();
+        res.status(201).json(newUser);
     } catch (error) {
-        console.error(error);
-        res.status(500).json({ error: 'Internal Server Error' });
+        res.status(400).json({message: error.message});
+    }
+};
+
+exports.updateUser = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const updatedUser = await User.findByIdAndUpdate(id, req.body, { new: true });
+        res.status(200).json(updatedUser);
+    } catch (error) {
+        res.status(400).json({message: error.message});
+    }
+};
+
+exports.deleteUser = async (req, res) => {
+    try {
+        const { id } = req.params;
+        await User.findByIdAndDelete(id);
+        res.status(204).send();
+    } catch (error) {
+        res.status(400).json({message: error.message});
     }
 };

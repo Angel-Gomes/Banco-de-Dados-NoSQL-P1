@@ -5,7 +5,7 @@ const authRoutes = require('./routes/authRoutes');
 const app = express();
 
 // Conexão com o MongoDB
-mongoose.connect('mongodb://localhost:27017/login_app', { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect('mongodb+srv://angelikgomes27:Angel27051991$@cluster0.7w1xtlj.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0', { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => console.log('Connected to MongoDB'))
     .catch(err => console.error('Error connecting to MongoDB:', err));
 

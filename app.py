@@ -1,8 +1,8 @@
 from flask import Flask, request, jsonify
-from flask_mysqldb import SQLAlchemy
+from flask_mysqldb import SQLAlchemy 
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:Angel27051991$@127.0.0.1:3306/Prova'
 db = SQLAlchemy(app)
 
 class Produto(db.Model):
