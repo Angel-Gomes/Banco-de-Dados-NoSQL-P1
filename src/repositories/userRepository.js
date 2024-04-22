@@ -9,10 +9,6 @@ class UserRepository {
     async getUserByUsername(username) {
         return await User.findOne({ username });
     }
-
-    async getAllUsers() {
-        return await User.find();
-    }
 }
 
 module.exports = new UserRepository();
