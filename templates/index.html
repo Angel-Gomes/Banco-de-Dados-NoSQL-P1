@@ -6,8 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Página inicial</title>
 </head>
-<body>
-    <h3>Aplicação Flask</h3>
-    <p>Meu nome é Angel Gomes</p>
+<body align="center">
+    <h1>Página de Login</h1>
+    <form action="/create" method="POST">
+        <label for="Login">Nome ou E-mail</label><br>
+        <input type="text" name="username" placeholder="Login" required><br><br>
+        <label for="Login">Senha</label><br>
+        <input type="password" name="password" placeholder="Senha" required><br><br>
+        <button type="submit">Confirmar</button>
+        <button type="delete"><a href="/delete/{{ user.id }}">Deletar</a></button>
+    </form>  
 </body>
 </html>
